@@ -1,0 +1,24 @@
+<form novalidate>
+  Form: {{mc.activeTab}}
+  <div class="form-group">
+    <input type="text" class="form-control" id="from-city" placeholder="Enter Origin City" ng-model="mc.fromCity">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="to-city" placeholder="Enter Destination City" ng-model="mc.toCity">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="start-date" placeholder="Departure Date" ng-model="mc.startDate">
+  </div>
+  <div class="form-group" ng-if="mc.activeTab==1">
+    <input type="text" class="form-control" id="return-date" placeholder="Return Date" ng-model="mc.returnDate">
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax">
+  </div>
+  <div class="form-group">
+    <button type="submit" ng-click="searchFlights()">Search</button>
+  </div>
+
+
+
+</form>

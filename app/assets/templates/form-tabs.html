@@ -1,0 +1,18 @@
+<uib-tabset active="active">
+  <uib-tab index="0" select="mc.activeTab = 0">
+    <uib-tab-heading>
+    One Way
+    </uib-tab-heading>
+
+    <div class="" ng-if="mc.activeTab == 0" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
+
+
+
+  </uib-tab>
+  <uib-tab index="1" select="mc.activeTab = 1">
+    <uib-tab-heading>
+    Return
+    </uib-tab-heading>
+    <div class="" ng-if="mc.activeTab == 1" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
+  </uib-tab>
+</uib-tabset>

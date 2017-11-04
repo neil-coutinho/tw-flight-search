@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="twApp">
   <head>
     <meta charset="utf-8">
-    <title>TW Flight Search</title>
+    <base href="/app/">
+    <title>TW Flight Search Engine</title>
 
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- NOTE: For production use style.min.css
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
   </head>
   <body>
+
     <div ng-view></div>
 
+    <!-- JS libs -->
     <script src="bower_components/lodash/dist/lodash.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+
+    <!-- User js -->
+    <script src="assets/js/app.js"></script>
+    <!-- Controllers -->
+    <script src="assets/js/controllers/main-controller.js"></script>
+
+    <!-- Directives -->
+    <script src="assets/js/directives/tw-booking-form.js"></script>
+
+
   </body>
 </html>

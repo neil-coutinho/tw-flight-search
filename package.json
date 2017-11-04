@@ -2,9 +2,10 @@
   "name": "tw-flight-search-project",
   "version": "0.0.1",
   "description": "A simple flight search booking form",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "http-server -a localhost -p 8000 -c-1"
+    "start": "http-server -a localhost -p 8000 -c-1",
+    "dev": "nodemon server.js"
   },
   "author": "neil-coutinho",
   "license": "ISC",
