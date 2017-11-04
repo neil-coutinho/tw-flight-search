@@ -1,0 +1,15 @@
+{
+  "name": "tw-flight-search-project",
+  "version": "0.0.1",
+  "description": "A simple flight search booking form",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1"
+  },
+  "author": "neil-coutinho",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.2",
+    "http-server": "^0.10.0"
+  }
+}

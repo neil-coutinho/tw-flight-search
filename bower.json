@@ -1,0 +1,23 @@
+{
+  "name": "tw-flight-search-project",
+  "description": "A simple flight search booking form",
+  "main": "index.js",
+  "authors": [
+    "neil-coutinho"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "angular": "angularjs#^1.6.6",
+    "angular-route": "^1.6.6"
+  }
+}
