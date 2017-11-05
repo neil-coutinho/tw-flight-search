@@ -1,0 +1,17 @@
+<div class="search-summary row">
+
+  <div class="col-md-8" ng-if="mc.fromCity && mc.toCity">
+
+    <h2>
+      {{mc.fromCity.city}}<span>></span>{{mc.toCity.city}}
+      <span ng-if="mc.activeTab==1 && mc.returnView">>
+      {{mc.fromCity.city}}</span>
+    </h2>
+
+  </div>
+  <div class="col-md-4">
+    <div class="form-group" ng-if="mc.startDate">Depart: {{mc.startDate | date: 'fullDate'}}</div>
+    <div class="form-group" ng-if="mc.returnDate && mc.activeTab==1 && mc.returnView">Return: {{mc.returnDate | date: 'fullDate'}}</div>
+  </div>
+
+</div>

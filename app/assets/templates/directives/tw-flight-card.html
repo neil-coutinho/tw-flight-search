@@ -1,0 +1,10 @@
+<div>
+  <div ng-repeat="flight in flights">
+    <div class="col-md-9">{{flight}}</div>
+    <div class="col-md-3">Photo goes here</div>
+  </div>
+
+  <div ng-if="flights.length == 0">
+    <div uib-alert class="alert alert-warning">We couldn't find flights to match your filters</div>
+  </div>
+</div>

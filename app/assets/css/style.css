@@ -1,3 +1,15 @@
-html {
-  
+/*
+------------------------------
+COMMON
+------------------------------
+*/
+html,
+body {
+  font-family: 'Open Sans', sans-serif, "Helvetica Neue", Helvetica, Arial;
+}
+#main-container .card-body {
+  min-height: 480px;
+}
+.chosen-container {
+  width: 100% !important;
 }
