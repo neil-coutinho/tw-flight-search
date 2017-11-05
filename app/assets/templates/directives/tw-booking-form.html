@@ -1,24 +1,43 @@
-<form novalidate>
+<form novalidate name="booking-form">
   Form: {{mc.activeTab}}
   <div class="form-group">
-    <input type="text" class="form-control" id="from-city" placeholder="Enter Origin City" ng-model="mc.fromCity">
+    <!-- <input type="text" class="form-control" id="from-city" placeholder="Enter Origin City" ng-model="mc.fromCity" required> -->
+    <pre>
+    {{mc.fromCity}}
+  </pre>
+
+    <select id="from-city" ng-model="mc.fromCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen style="width: 100%;">
+      <<option value=""></option>
+    </select>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="to-city" placeholder="Enter Destination City" ng-model="mc.toCity">
+    <input type="text" class="form-control" id="to-city" placeholder="Enter Destination City" ng-model="mc.toCity" required>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="start-date" placeholder="Departure Date" ng-model="mc.startDate">
+
+    <p class="input-group">
+      <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.startDate" is-open="mc.datePopup[0].opened" datepicker-options="mc.dateOptions" ng-required="true" close-text="Close"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="openDateSelector(0)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+
+
   </div>
   <div class="form-group" ng-if="mc.activeTab==1">
-    <input type="text" class="form-control" id="return-date" placeholder="Return Date" ng-model="mc.returnDate">
+
+    <p class="input-group">
+      <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.returnDate" is-open="mc.datePopup[1].opened" datepicker-options="mc.dateOptions" minDate="mc.startDate" ng-required="true" close-text="Close"/>
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="openDateSelector(1)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax">
+    <input type="number" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax" required max="10" min="1">
   </div>
   <div class="form-group">
     <button type="submit" ng-click="searchFlights()">Search</button>
   </div>
-
-
-
 </form>

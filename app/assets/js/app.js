@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('twApp',['ngRoute', 'ui.bootstrap'])
+angular.module('twApp',['ngRoute','ngResource','ui.bootstrap','localytics.directives'])
 
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 

@@ -6,6 +6,8 @@
     <title>TW Flight Search Engine</title>
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/chosen/chosen.min.css">
+    <link rel="stylesheet" href="bower_components/angular-chosen-localytics/chosen-spinner.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- NOTE: For production use style.min.css
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
@@ -15,15 +17,26 @@
     <div ng-view></div>
 
     <!-- JS libs -->
+    <script src="bower_components/moment/min/moment.min.js"></script>
     <script src="bower_components/lodash/dist/lodash.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/chosen/chosen.jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="bower_components/angular-chosen-localytics/dist/angular-chosen.min.js"></script>
 
 
     <!-- User js -->
     <script src="assets/js/app.js"></script>
+
+    <!-- Services -->
+    <script src="assets/js/services/flight.js"></script>
+    <script src="assets/js/services/airport.js"></script>
+
     <!-- Controllers -->
     <script src="assets/js/controllers/main-controller.js"></script>
 
