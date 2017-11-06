@@ -4,7 +4,8 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
     activeTab: 0, // One way or roundtrip
     returnView: false, //reset flag when shifting from roundtrip to one way
     startDate: new Date(),
-    firstLoad: true, //inital  load flag
+    firstLoad: false, //inital  load flag
+    loading: false, //flag = true when api call is made
     dateOptions : {
       maxDate: new Date(2018, 1, 22),
       minDate: new Date(),
@@ -71,6 +72,7 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
     params.OperationDate = moment($scope.mc.startDate).format('YYYY-MM-DD');
 
     $scope.mc.firstLoad = false;
+    $scope.mc.loading = true;
     $scope.resizeSlider();
 
     Flight.search(params).then(
@@ -98,6 +100,9 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
            }
          $scope.mc.returnView = true;
          $scope.getReturnFlights(params);
+       } else{
+
+           $scope.mc.loading = false;
        }
 
        },
@@ -105,6 +110,7 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
          console.log('error');
          console.log(response);
          $scope.mc.searchResults = [];
+         $scope.mc.loading = false;
        }
      );
 
@@ -136,11 +142,14 @@ $scope.getReturnFlights = function(params){
 
      $scope.mc.returnSearchResults = $scope.setRandomPrice($scope.mc.returnSearchResults, 1);
 
+      $scope.mc.loading = false;
+
      },
      function error(response){
        console.log('error');
        console.log(response);
        $scope.mc.returnSearchResults = [];
+       $scope.mc.loading = false;
      }
    );
 
@@ -221,6 +230,9 @@ $scope.getReturnFlights = function(params){
 
         list[k].price = Math.floor(Math.random() * (max - min + 1) + min);
         list[k].hide = false;
+
+        list[k].arrivalTime = moment(v.arrivalTime).format('hh:mm A');
+        list[k].departureTime = moment(v.departureTime).format('hh:mm A');
 
         if(returnFlightsArr ==1){ //Update from and to city (reverse if returnFlightsArr == 1)
 

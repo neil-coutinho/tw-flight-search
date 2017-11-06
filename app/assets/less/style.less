@@ -1,4 +1,5 @@
 @primary-font: 'Open Sans', sans-serif;
+@primary-color: #ef5ba1;
 
 /*
 ------------------------------
@@ -11,6 +12,16 @@ html, body{
   font-size: 14px;
 }
 
+.row-less-padding {
+
+    margin-left: -5px;
+    margin-right: -5px;
+    [class*="col-"] {
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  }
+
 
 #main-container{
 
@@ -18,6 +29,38 @@ html, body{
     min-height: 480px;
   }
 }
+
+.f-600{
+  font-weight: 600!important;
+}
+
+.btn-success{
+
+  &:hover, &:focus:hover{
+    background-color: @primary-color !important;
+  }
+
+}
+
+.bgm-primary{
+  background-color: @primary-color !important;
+}
+
+/*
+------------------------------
+FORM
+------------------------------
+*/
+
+.form-action{
+  .preloader{
+    vertical-align: middle;
+    width: 36px !important;
+    height: 36px;
+  }
+}
+
+
 
 /*
 ------------------------------
@@ -27,6 +70,7 @@ CHOSEN OVERRIDES
 
 .chosen-container{
   width: 100% !important;
+  font-size: 14px;
   .chosen-single{
     span{
       text-transform: none;
@@ -43,12 +87,113 @@ SEARCH RESULTS
 
 .search-summary{
 
+  .date-row{
+    text-align: right;
+    font-size: 13px;
+  }
+
+  h3{
+    line-height: 1.6;
+  }
 }
 
 .search-results{
+  border-top: 2px solid #eee;
+
   .flight{
+    border:2px solid #eee;
+
+    .flight-price{
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .flight-code{
+      font-size: 16px;
+
+    }
+
+    .flight-path{
+      font-size: 20px;
+      font-weight: 600;
+
+    }
+
+    .flight-time{
+      font-size: 18px;
+      font-weight: 600;
+
+      label{
+        font-weight: 600;
+      }
+    }
+
+    .flight-action{
+      width: 200px;
+
+    }
+
+    .flight-img{
+      width: 200px;
+      height: 100px;
+      background: #eee;
+    }
+
+  }
 
 
+  .col-md-6{ /* adjust font-size for 2 col format*/
+    .flight{
 
+
+      .flight-price{
+        font-size: 20px;
+
+      }
+
+      .flight-code{
+        font-size: 14px;
+
+      }
+
+      .flight-path{
+        font-size: 18px;
+
+
+      }
+
+      .flight-time{
+        font-size: 16px;
+
+
+      }
+
+      .flight-action{
+        width: 150px;
+
+      }
+
+      .flight-img{
+        width: 150px;
+        height: 100px;
+        background: #eee;
+      }
+
+    }
+
+
+  }
+}
+
+
+/*
+------------------------------
+DATEPICKER
+------------------------------
+*/
+
+.btn-info{
+  .text-info{
+    color: #fff!important;
   }
 }

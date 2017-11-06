@@ -1,4 +1,4 @@
-<form novalidate name="booking-form">
+<form novalidate name="bookingForm">
 
   <div class="form-group">
     <div class="fg-line">
@@ -13,7 +13,7 @@
   <div class="form-group">
     <div class="fg-line">
         <div class="select">
-          <select id="to-city" ng-model="mc.toCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen class="form-control" data-placeholder-text-single="'Enter Destination City'">
+          <select id="to-city" ng-model="mc.toCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen class="form-control" data-placeholder-text-single="'Enter Destination City'" required>
             <option value=""></option>
           </select>
         </div>
@@ -24,33 +24,42 @@
   <div class="form-group">
     <div class="input-group date-picker">
       <div class="fg-line" ng-class="{'toggled': mc.datePopup[0].opened}">
-        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.startDate" is-open="mc.datePopup[0].opened" datepicker-options="mc.dateOptions" ng-required="true" close-text="Close" placeholder="Departure Date"/>
+        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.startDate" is-open="mc.datePopup[0].opened" datepicker-options="mc.dateOptions" ng-required="true" close-text="Close" placeholder="Departure Date" ng-focus="openDateSelector(0)"/>
       </div>
       <span class="input-group-btn input-group-addon" ng-click="openDateSelector(0)">
-        <i class="zmdi zmdi-calendar"></i>
+        <i class="zmdi zmdi-calendar f-20 c-gray"></i>
       </span>
     </div>
   </div>
 
 
-  <div class="form-group" ng-if="mc.activeTab==1">
+  <div class="form-group" ng-if="mc.activeTab==1" ng-class="{'has-error': bookingForm.startDate.$invalid && bookingForm.startDate.$touched}">
     <div class="input-group date-picker">
       <div class="fg-line" ng-class="{'toggled': mc.datePopup[0].opened}">
-        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.returnDate" is-open="mc.datePopup[1].opened" datepicker-options="mc.dateOptions" minDate="mc.startDate" ng-required="true" close-text="Close" placeholder="Return Date"/>
+        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.returnDate" is-open="mc.datePopup[1].opened" datepicker-options="mc.dateOptions" minDate="mc.startDate" ng-required="true" close-text="Close" placeholder="Return Date" ng-focus="openDateSelector(1)" name="startDate"/>
       </div>
       <span class="input-group-btn input-group-addon" ng-click="openDateSelector(1)">
-        <i class="zmdi zmdi-calendar"></i>
+        <i class="zmdi zmdi-calendar f-20 c-gray"></i>
       </span>
     </div>
+    <span class="help-block" ng-show="bookingForm.startDate.$error.required && bookingForm.startDate.$touched">Return date is required.</span>
+
   </div>
 
 
-  <div class="form-group">
-    <div class="fg-line">
-        <input type="number" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax" required max="10" min="1">
+  <div class="form-group" ng-class="{'has-error': bookingForm.pax.$invalid && bookingForm.pax.$touched}">
+    <div class="fg-line" ng-class="{'fg-toggled': mc.paxFocus}">
+        <input type="number" class="form-control" name="pax" id="pax" placeholder="Passengers" ng-model="mc.pax" required max="10" min="1" ng-focus="mc.paxFocus = true" ng-blur="mc.paxFocus= false">
     </div>
+    <span class="help-block" ng-show="bookingForm.pax.$error.required && bookingForm.pax.$touched">At least 1 passenger is required.</span>
   </div>
-  <div class="form-group">
+  <div class="form-group form-action">
     <button type="submit" ng-click="searchFlights()" class="btn btn-success">Search</button>
+
+    <div class="preloader pls-blue  m-l-10" ng-if="mc.loading">
+        <svg class="pl-circular" viewBox="25 25 50 50">
+            <circle class="plc-path" cx="50" cy="50" r="20" />
+        </svg>
+    </div>
   </div>
 </form>

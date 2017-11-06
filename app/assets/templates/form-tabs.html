@@ -4,14 +4,14 @@
     One Way
     </uib-tab-heading>
 
-    <div class="p-15" ng-if="mc.activeTab == 0" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
+    <div class="p-t-15" ng-if="mc.activeTab == 0" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
   </uib-tab>
 
   <uib-tab index="1" select="mc.activeTab = 1; mc.returnDate = mc.startDate">
     <uib-tab-heading>
     Return
     </uib-tab-heading>
-    <div class="p-15" ng-if="mc.activeTab == 1" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
+    <div class="p-t-15" ng-if="mc.activeTab == 1" ng-include="'assets/templates/directives/tw-booking-form.html'"></div>
   </uib-tab>
 
 </uib-tabset>

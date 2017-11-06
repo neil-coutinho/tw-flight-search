@@ -8,8 +8,36 @@ body {
   font-family: 'Open Sans', sans-serif, "Helvetica Neue", Helvetica, Arial;
   font-size: 14px;
 }
+.row-less-padding {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+.row-less-padding [class*="col-"] {
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
 #main-container .card-body {
   min-height: 480px;
+}
+.f-600 {
+  font-weight: 600!important;
+}
+.btn-success:hover,
+.btn-success:focus:hover {
+  background-color: #ef5ba1 !important;
+}
+.bgm-primary {
+  background-color: #ef5ba1 !important;
+}
+/*
+------------------------------
+FORM
+------------------------------
+*/
+.form-action .preloader {
+  vertical-align: middle;
+  width: 36px !important;
+  height: 36px;
 }
 /*
 ------------------------------
@@ -18,6 +46,7 @@ CHOSEN OVERRIDES
 */
 .chosen-container {
   width: 100% !important;
+  font-size: 14px;
 }
 .chosen-container .chosen-single span {
   text-transform: none;
@@ -27,3 +56,73 @@ CHOSEN OVERRIDES
 SEARCH RESULTS
 ------------------------------
 */
+.search-summary .date-row {
+  text-align: right;
+  font-size: 13px;
+}
+.search-summary h3 {
+  line-height: 1.6;
+}
+.search-results {
+  border-top: 2px solid #eee;
+}
+.search-results .flight {
+  border: 2px solid #eee;
+}
+.search-results .flight .flight-price {
+  font-size: 24px;
+  font-weight: 600;
+}
+.search-results .flight .flight-code {
+  font-size: 16px;
+}
+.search-results .flight .flight-path {
+  font-size: 20px;
+  font-weight: 600;
+}
+.search-results .flight .flight-time {
+  font-size: 18px;
+  font-weight: 600;
+}
+.search-results .flight .flight-time label {
+  font-weight: 600;
+}
+.search-results .flight .flight-action {
+  width: 200px;
+}
+.search-results .flight .flight-img {
+  width: 200px;
+  height: 100px;
+  background: #eee;
+}
+.search-results .col-md-6 {
+  /* adjust font-size for 2 col format*/
+}
+.search-results .col-md-6 .flight .flight-price {
+  font-size: 20px;
+}
+.search-results .col-md-6 .flight .flight-code {
+  font-size: 14px;
+}
+.search-results .col-md-6 .flight .flight-path {
+  font-size: 18px;
+}
+.search-results .col-md-6 .flight .flight-time {
+  font-size: 16px;
+}
+.search-results .col-md-6 .flight .flight-action {
+  width: 150px;
+}
+.search-results .col-md-6 .flight .flight-img {
+  width: 150px;
+  height: 100px;
+  background: #eee;
+}
+/*
+------------------------------
+DATEPICKER
+------------------------------
+*/
+.btn-info .text-info {
+  color: #fff!important;
+}

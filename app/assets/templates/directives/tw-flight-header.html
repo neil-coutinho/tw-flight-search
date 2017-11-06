@@ -1,8 +1,8 @@
 <div class="search-summary row p-t-15 p-b-15">
 
-  <div class="col-md-8" ng-if="mc.fromCity && mc.toCity">
+  <div class="col-md-8">
 
-    <h2 class="m-0">
+    <h3 class="m-0 f-600" ng-if="mc.fromCity && mc.toCity">
       {{mc.fromCity.city}}
       <i class="zmdi zmdi-chevron-right"></i>
       {{mc.toCity.city}}
@@ -11,7 +11,7 @@
         <i class="zmdi zmdi-chevron-right"></i>
         {{mc.fromCity.city}}
       </span>
-    </h2>
+    </h3>
 
   </div>
 
