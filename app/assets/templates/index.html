@@ -18,7 +18,7 @@
           </div>
 
         </div>
-        <div class="col-md-8  h-100" ng-if="!mc.firstLoad">
+        <div class="col-md-8  h-100 p-t-15 p-b-15" ng-if="!mc.firstLoad">
 
               <tw-flight-header></tw-flight-header>
 
@@ -26,16 +26,15 @@
 
                 <div class="search-result row">
 
-                  <div ng-class="mc.activeTab == 0 ? 'col-md-12': 'col-md-6'">
+                  <div class="col-md-6">
 
-                    <tw-flight-card flights="mc.searchResults"></tw-flight-card>
+                    <tw-flight-card flights="mc.searchResults" mc="mc"></tw-flight-card>
 
                   </div>
 
-                  <div ng-if="mc.activeTab == 1 && mc.returnView" class="col-md-6">
+                  <div  class="col-md-6">
 
                     <tw-flight-card flights="mc.returnSearchResults"></tw-flight-card>
-
 
                   </div>
 

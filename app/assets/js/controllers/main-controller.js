@@ -134,7 +134,7 @@ $scope.getReturnFlights = function(params){
 
      console.log($scope.mc.returnSearchResults);
 
-     $scope.mc.returnSearchResults = $scope.setRandomPrice($scope.mc.returnSearchResults);
+     $scope.mc.returnSearchResults = $scope.setRandomPrice($scope.mc.returnSearchResults, 1);
 
      },
      function error(response){
@@ -163,7 +163,32 @@ $scope.getReturnFlights = function(params){
 
   //Filter search results on update of slider
   $scope.filterResults = function(){
-    console.log($scope.mc.slider);
+      var min,max;
+      min = $scope.mc.slider.minValue;
+      max = $scope.mc.slider.maxValue;
+
+      if(_.size($scope.mc.searchResults) > 0){
+
+        _.each($scope.mc.searchResults, function(v,k){
+            if(v.price > max || v.price < min) {
+              $scope.mc.searchResults[k].hide = true;
+            } else{
+                $scope.mc.searchResults[k].hide = false;
+            }
+        });
+      }
+
+
+      if(_.size($scope.mc.returnSearchResults) > 0){
+
+        _.each($scope.mc.returnSearchResults, function(v,k){
+            if(v.price > max || v.price < min) {
+              $scope.mc.returnSearchResults[k].hide = true;
+            } else{
+              $scope.mc.returnSearchResults[k].hide = false;
+            }
+        });
+      }
   }
 
   //Resize slider
@@ -175,7 +200,8 @@ $scope.getReturnFlights = function(params){
 
 
   //Set random prices to flights since we do not have price information
-  $scope.setRandomPrice = function(list) {
+
+  $scope.setRandomPrice = function(list, returnFlightsArr) {
 
     var min,max;
 
@@ -194,6 +220,17 @@ $scope.getReturnFlights = function(params){
       _.each(list, function(v,k){
 
         list[k].price = Math.floor(Math.random() * (max - min + 1) + min);
+        list[k].hide = false;
+
+        if(returnFlightsArr ==1){ //Update from and to city (reverse if returnFlightsArr == 1)
+
+          list[k].fromCity = $scope.mc.fromCity;
+          list[k].toCity = $scope.mc.toCity;
+
+        } else{
+          list[k].fromCity = $scope.mc.fromCity;
+          list[k].toCity = $scope.mc.toCity;
+        }
 
       });
 

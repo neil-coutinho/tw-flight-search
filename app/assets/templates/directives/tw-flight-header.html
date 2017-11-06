@@ -1,17 +1,23 @@
-<div class="search-summary row">
+<div class="search-summary row p-t-15 p-b-15">
 
   <div class="col-md-8" ng-if="mc.fromCity && mc.toCity">
 
-    <h2>
-      {{mc.fromCity.city}}<span>></span>{{mc.toCity.city}}
-      <span ng-if="mc.activeTab==1 && mc.returnView">>
-      {{mc.fromCity.city}}</span>
+    <h2 class="m-0">
+      {{mc.fromCity.city}}
+      <i class="zmdi zmdi-chevron-right"></i>
+      {{mc.toCity.city}}
+
+      <span ng-if="mc.activeTab==1 && mc.returnView">
+        <i class="zmdi zmdi-chevron-right"></i>
+        {{mc.fromCity.city}}
+      </span>
     </h2>
 
   </div>
+
   <div class="col-md-4">
-    <div class="form-group" ng-if="mc.startDate">Depart: {{mc.startDate | date: 'fullDate'}}</div>
-    <div class="form-group" ng-if="mc.returnDate && mc.activeTab==1 && mc.returnView">Return: {{mc.returnDate | date: 'fullDate'}}</div>
+    <div class="form-group m-b-0 date-row" ng-if="mc.startDate">Depart: {{mc.startDate | date: 'mediumDate'}}</div>
+    <div class="form-group m-b-0 date-row" ng-if="mc.returnDate && mc.activeTab==1 && mc.returnView">Return: {{mc.returnDate | date: 'mediumDate'}}</div>
   </div>
 
-</div>
+</div><!--/.row-->

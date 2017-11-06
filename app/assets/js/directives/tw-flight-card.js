@@ -5,9 +5,11 @@ return{
  replace: true,
  restrict: 'E',
  scope:{
-   flights: '='
+   flights: '=',
+   mc: '='
  },
  templateUrl: 'assets/templates/directives/tw-flight-card.html',
+ 
 
 }
 

@@ -1,40 +1,56 @@
 <form novalidate name="booking-form">
 
   <div class="form-group">
-    <select id="from-city" ng-model="mc.fromCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen style="width: 100%;">
-      <option value=""></option>
-    </select>
+    <div class="fg-line">
+        <div class="select">
+          <select id="from-city" ng-model="mc.fromCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen  class="form-control" required  data-placeholder-text-single="'Enter Origin City'">
+            <option value=""></option>
+          </select>
+        </div>
+    </div>
   </div>
-  <div class="form-group">
-    <select id="to-city" ng-model="mc.toCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen style="width: 100%;">
-      <option value=""></option>
-    </select>
-  </div>
-  <div class="form-group">
 
-    <p class="input-group">
-      <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.startDate" is-open="mc.datePopup[0].opened" datepicker-options="mc.dateOptions" ng-required="true" close-text="Close"/>
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="openDateSelector(0)"><i class="glyphicon glyphicon-calendar"></i></button>
+  <div class="form-group">
+    <div class="fg-line">
+        <div class="select">
+          <select id="to-city" ng-model="mc.toCity" ng-options="port.city+'  - '+port.name+' ('+port.code+') ' for port in airportList" chosen class="form-control" data-placeholder-text-single="'Enter Destination City'">
+            <option value=""></option>
+          </select>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <div class="input-group date-picker">
+      <div class="fg-line" ng-class="{'toggled': mc.datePopup[0].opened}">
+        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.startDate" is-open="mc.datePopup[0].opened" datepicker-options="mc.dateOptions" ng-required="true" close-text="Close" placeholder="Departure Date"/>
+      </div>
+      <span class="input-group-btn input-group-addon" ng-click="openDateSelector(0)">
+        <i class="zmdi zmdi-calendar"></i>
       </span>
-    </p>
-
-
+    </div>
   </div>
+
+
   <div class="form-group" ng-if="mc.activeTab==1">
-
-    <p class="input-group">
-      <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.returnDate" is-open="mc.datePopup[1].opened" datepicker-options="mc.dateOptions" minDate="mc.startDate" ng-required="true" close-text="Close"/>
-      <span class="input-group-btn">
-        <button type="button" class="btn btn-default" ng-click="openDateSelector(1)"><i class="glyphicon glyphicon-calendar"></i></button>
+    <div class="input-group date-picker">
+      <div class="fg-line" ng-class="{'toggled': mc.datePopup[0].opened}">
+        <input type="text" class="form-control" uib-datepicker-popup="dd MMM, yyyy" ng-model="mc.returnDate" is-open="mc.datePopup[1].opened" datepicker-options="mc.dateOptions" minDate="mc.startDate" ng-required="true" close-text="Close" placeholder="Return Date"/>
+      </div>
+      <span class="input-group-btn input-group-addon" ng-click="openDateSelector(1)">
+        <i class="zmdi zmdi-calendar"></i>
       </span>
-    </p>
+    </div>
+  </div>
 
+
+  <div class="form-group">
+    <div class="fg-line">
+        <input type="number" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax" required max="10" min="1">
+    </div>
   </div>
   <div class="form-group">
-    <input type="number" class="form-control" id="pax" placeholder="Passengers" ng-model="mc.pax" required max="10" min="1">
-  </div>
-  <div class="form-group">
-    <button type="submit" ng-click="searchFlights()">Search</button>
+    <button type="submit" ng-click="searchFlights()" class="btn btn-success">Search</button>
   </div>
 </form>

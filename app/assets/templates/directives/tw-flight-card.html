@@ -1,10 +1,23 @@
 <div>
-  <div ng-repeat="flight in flights">
-    <div class="col-md-9">{{flight}}</div>
-    <div class="col-md-3">Photo goes here</div>
+  <div ng-repeat="flight in filterResults = (flights | orderBy: price | filter:{ hide: false })" ng-if="!flight.hide" class="flight p-15 m-t-5 m-b-5">
+
+    <div class="pull-right">
+
+    </div>
+
+    <div class="flight-data">
+      <div class="flight-price">{{::flight.price |currency: 'INR'}}</div>
+      <div class="flight-code">{{::flight.airlineCode}} - {{::flight.flightNo}}</div>
+      <div class="flight-path">
+        {{::flight.fromCity.code}} <i class="zmdi zmdi-chevron-right"></i> {{::flight.toCity.code}}
+      </div>
+    </div>
+
   </div>
 
-  <div ng-if="flights.length == 0">
+  <div ng-if="filterResults.length == 0">
     <div uib-alert class="alert alert-warning">We couldn't find flights to match your filters</div>
   </div>
+
+  
 </div>

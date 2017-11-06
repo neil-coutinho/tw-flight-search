@@ -6,10 +6,24 @@ COMMON
 html,
 body {
   font-family: 'Open Sans', sans-serif, "Helvetica Neue", Helvetica, Arial;
+  font-size: 14px;
 }
 #main-container .card-body {
   min-height: 480px;
 }
+/*
+------------------------------
+CHOSEN OVERRIDES
+------------------------------
+*/
 .chosen-container {
   width: 100% !important;
 }
+.chosen-container .chosen-single span {
+  text-transform: none;
+}
+/*
+------------------------------
+SEARCH RESULTS
+------------------------------
+*/
