@@ -1,4 +1,4 @@
-angular.module('twApp').controller('MainController',['$scope', 'Flight','airportService', '$timeout', function($scope, Flight, airportService,$timeout){
+angular.module('twApp').controller('MainController',['$scope', 'Flight','airportService', '$timeout', 'growl','localStorageService',function($scope, Flight, airportService,$timeout, growl,localStorageService){
 
   $scope.mc = {
     activeTab: 0, // One way or roundtrip
@@ -15,6 +15,8 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
     datePopup: [{opened: false},{opened: false}],
     searchResults: [],
     returnSearchResults:[],
+    fromCity: {},
+    toCity: {},
     slider: {
       minValue: 0,
       maxValue: 10000,
@@ -35,11 +37,51 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
 
 
 
+
   //Get list of Indian airports for chosen search
   $scope.init = function() {
+
     airportService.get().$promise.then(function(data){
+
     $scope.airportList = _.filter(data,{country: 'India'});
-      console.log($scope.airportList);
+
+      if(localStorageService.isSupported) { //load localstorage cities
+
+          var fromCity, toCity, index;
+
+          fromCity = $scope.getLocalStorageItem('fromAirport');
+          toCity = $scope.getLocalStorageItem('toAirport');
+
+              if(fromCity){
+                fromCity = JSON.parse(fromCity);
+                index = -1;
+                index = _.findIndex($scope.airportList, {code: fromCity.code});
+
+                if(index!= -1){
+
+                  $scope.mc.fromCity = $scope.airportList[index];
+                }
+
+              }
+              if(toCity){
+                toCity = JSON.parse(toCity);
+
+                index = -1;
+                index = _.findIndex($scope.airportList, {code: toCity.code});
+
+                if(index!= -1){
+
+                  $scope.mc.toCity = $scope.airportList[index];
+                }
+
+              }
+
+
+
+
+
+       }
+
     });
 
     $scope.resizeSlider();
@@ -50,30 +92,32 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
   $scope.searchFlights = function() {
 
     //validation
-    if(!$scope.mc.pax > 0){
-      console.log('Whoops! at least one passenger is required');
+
+    if(!$scope.mc.fromCity && !$scope.mc.toCity){
+      growl.error('Whoops! Please select a valid city.');
       return;
     }
 
-    if(!$scope.mc.fromCity.code && !$scope.mc.toCity.code){
-      console.log('Whoops! Please select a valid city');
+    if(!$scope.mc.pax > 0){
+      growl.error('Whoops! Please enter the number of passengers (between 1 and 10).');
       return;
     }
-    console.log($scope.mc);
+
+
 
     var params = {
       "fromAirport":$scope.mc.fromCity.code,
       "toAirport":$scope.mc.toCity.code,
-      "airlineCode":"",
       "OperationDate":$scope.mc.startDate,
-      "fromTime":"",
-      "toTime":""
     }
     params.OperationDate = moment($scope.mc.startDate).format('YYYY-MM-DD');
 
     $scope.mc.firstLoad = false;
     $scope.mc.loading = true;
     $scope.resizeSlider();
+
+    $scope.setLocalStorage('fromAirport', JSON.stringify($scope.mc.fromCity));
+    $scope.setLocalStorage('toAirport', JSON.stringify($scope.mc.toCity));
 
     Flight.search(params).then(
 
@@ -87,12 +131,12 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
            $scope.mc.searchResults = [];
          }
 
-       console.log($scope.mc.searchResults);
+
 
         $scope.mc.searchResults = $scope.setRandomPrice($scope.mc.searchResults);
 
        if($scope.mc.activeTab == 1){
-         console.log('get return flights');
+
          params = {
            "fromAirport":$scope.mc.toCity.code,
            "toAirport":$scope.mc.fromCity.code,
@@ -107,7 +151,7 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
 
        },
        function error(response){
-         console.log('error');
+        // console.log('error');
          console.log(response);
          $scope.mc.searchResults = [];
          $scope.mc.loading = false;
@@ -138,7 +182,7 @@ $scope.getReturnFlights = function(params){
          $scope.mc.returnSearchResults = [];
        }
 
-     console.log($scope.mc.returnSearchResults);
+     //console.log($scope.mc.returnSearchResults);
 
      $scope.mc.returnSearchResults = $scope.setRandomPrice($scope.mc.returnSearchResults, 1);
 
@@ -146,7 +190,7 @@ $scope.getReturnFlights = function(params){
 
      },
      function error(response){
-       console.log('error');
+      // console.log('error');
        console.log(response);
        $scope.mc.returnSearchResults = [];
        $scope.mc.loading = false;
@@ -154,10 +198,6 @@ $scope.getReturnFlights = function(params){
    );
 
 }
-
-
-
-
 
 
 
@@ -208,7 +248,7 @@ $scope.getReturnFlights = function(params){
   }
 
 
-  //Set random prices to flights since we do not have price information
+  //Set random prices and a few defaults to flights since we do not have price information
 
   $scope.setRandomPrice = function(list, returnFlightsArr) {
 
@@ -236,8 +276,8 @@ $scope.getReturnFlights = function(params){
 
         if(returnFlightsArr ==1){ //Update from and to city (reverse if returnFlightsArr == 1)
 
-          list[k].fromCity = $scope.mc.fromCity;
-          list[k].toCity = $scope.mc.toCity;
+          list[k].fromCity = $scope.mc.toCity;
+          list[k].toCity = $scope.mc.fromCity;
 
         } else{
           list[k].fromCity = $scope.mc.fromCity;
@@ -257,5 +297,21 @@ $scope.getReturnFlights = function(params){
     $scope.mc.returnSearchResults = [];
   }
 
+
+  //Set local storage
+  $scope.setLocalStorage = function(key, val){
+    console.log(key);
+    console.log(val);
+    return localStorageService.set(key, val);
+
+  }
+
+
+  //Get local storage item by key
+  $scope.getLocalStorageItem = function(key){
+
+    return localStorageService.get(key);
+
+  }
 
 }]);

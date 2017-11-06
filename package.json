@@ -4,6 +4,10 @@
   "description": "A simple flight search booking form",
   "main": "server.js",
   "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "update-deps": "npm update",
+    "postupdate-deps": "bower update",
     "start": "http-server -a localhost -p 8000 -c-1",
     "dev": "nodemon server.js"
   },

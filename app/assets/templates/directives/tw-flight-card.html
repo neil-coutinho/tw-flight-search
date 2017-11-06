@@ -2,13 +2,16 @@
   <div ng-repeat="flight in filterResults = (flights | orderBy: 'price' | filter:{ hide: false })" ng-if="!flight.hide" class="flight p-15 m-t-5 m-b-5">
 
     <div class="pull-right flight-action">
-        <div class="flight-img m-t-10 m-b-10"></div>
+        <div class="flight-img m-t-10 m-b-10">
+          
+        </div>
         <button class="btn btn-info btn-block">Book this flight</button>
     </div>
 
     <div class="flight-data">
       <div class="flight-price m-b-10">{{::flight.price |currency: 'Rs.&nbsp;'}}</div>
       <div class="flight-code m-b-10">{{::flight.airlineCode}} - {{::flight.flightNo}}</div>
+
       <div class="flight-path m-b-10">
         {{::flight.fromCity.code}} <i class="zmdi zmdi-chevron-right"></i> {{::flight.toCity.code}}
       </div>

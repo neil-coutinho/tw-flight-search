@@ -93,7 +93,7 @@ SEARCH RESULTS
 .search-results .flight .flight-img {
   width: 200px;
   height: 100px;
-  background: #eee;
+  background: url('../img/logos/6E.jpg') no-repeat 0 0 transparent / cover;
 }
 .search-results .col-md-6 {
   /* adjust font-size for 2 col format*/
@@ -116,7 +116,6 @@ SEARCH RESULTS
 .search-results .col-md-6 .flight .flight-img {
   width: 150px;
   height: 100px;
-  background: #eee;
 }
 /*
 ------------------------------
@@ -125,4 +124,13 @@ DATEPICKER
 */
 .btn-info .text-info {
   color: #fff!important;
+}
+/*
+------------------------------
+GROWL
+------------------------------
+*/
+.growl-message {
+  font-size: 15px;
+  font-weight: 600px;
 }
