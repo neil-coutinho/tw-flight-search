@@ -58,7 +58,7 @@ makes it easier to serve the files by a web server.*
 
 ### Run the Application
 
-We have preconfigured the project with a simple development web server. The simplest way to start
+I have preconfigured the project with a simple development web server. The simplest way to start
 this server is:
 
 ```
