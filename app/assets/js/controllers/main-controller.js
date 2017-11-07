@@ -4,7 +4,7 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
     activeTab: 0, // One way or roundtrip
     returnView: false, //reset flag when shifting from roundtrip to one way
     startDate: new Date(),
-    firstLoad: false, //inital  load flag
+    firstLoad: true, //inital  load flag
     loading: false, //flag = true when api call is made
     dateOptions : {
       maxDate: new Date(2018, 1, 22),
@@ -82,6 +82,8 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
 
        }
 
+    }, function(){
+        growl.error('Whoops! Server error. Please try again after some time.');
     });
 
     $scope.resizeSlider();
@@ -135,6 +137,8 @@ angular.module('twApp').controller('MainController',['$scope', 'Flight','airport
 
         $scope.mc.searchResults = $scope.setRandomPrice($scope.mc.searchResults);
 
+        $scope.filterResults();
+
        if($scope.mc.activeTab == 1){
 
          params = {
@@ -186,7 +190,9 @@ $scope.getReturnFlights = function(params){
 
      $scope.mc.returnSearchResults = $scope.setRandomPrice($scope.mc.returnSearchResults, 1);
 
-      $scope.mc.loading = false;
+     $scope.filterResults();
+
+     $scope.mc.loading = false;
 
      },
      function error(response){

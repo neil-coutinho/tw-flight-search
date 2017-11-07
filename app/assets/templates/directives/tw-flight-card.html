@@ -2,8 +2,8 @@
   <div ng-repeat="flight in filterResults = (flights | orderBy: 'price' | filter:{ hide: false })" ng-if="!flight.hide" class="flight p-15 m-t-5 m-b-5">
 
     <div class="pull-right flight-action">
-        <div class="flight-img m-t-10 m-b-10">
-          
+        <div class="flight-img m-t-10 m-b-10" style="background:url('assets/img/logos/{{flight.airlineCode}}.jpg') no-repeat 0 0 transparent /cover">
+
         </div>
         <button class="btn btn-info btn-block">Book this flight</button>
     </div>
@@ -17,10 +17,10 @@
       </div>
 
       <div class="flight-time">
-        <label>Depart:&nbsp;</label>{{::flight.departureTime}}
+        <label>Depart:&nbsp;</label><span ng-if="flight.departureTime != 'Invalid date'">{{::flight.departureTime}}</span>
       </div>
       <div class="flight-time">
-        <label>Arrive:&nbsp;</label>{{::flight.arrivalTime}}
+        <label>Arrive:&nbsp;</label><span ng-if="flight.arrivalTime != 'Invalid date'">{{::flight.arrivalTime}}</span>
       </div>
     </div>
 

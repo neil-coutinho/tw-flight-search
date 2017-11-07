@@ -134,3 +134,35 @@ GROWL
   font-size: 15px;
   font-weight: 600px;
 }
+/*
+------------------------------
+RESPONSIVE OVERRIDES
+------------------------------
+*/
+@media (max-width: 520px) {
+  .search-summary h3 {
+    font-size: 18px;
+  }
+  .search-summary .date-row {
+    text-align: left;
+  }
+  .search-results .flight .flight-price {
+    font-size: 18px;
+  }
+  .search-results .flight .flight-code {
+    font-size: 14px;
+  }
+  .search-results .flight .flight-path {
+    font-size: 16px;
+  }
+  .search-results .flight .flight-time {
+    font-size: 15px;
+  }
+  .search-results .flight .flight-action {
+    width: 150px;
+  }
+  .search-results .flight .flight-img {
+    width: 150px;
+    height: 100px;
+  }
+}
